@@ -2,6 +2,8 @@ package com.hrms.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -158,13 +160,17 @@ public class CommonMethods extends PageInitiliazer {
 	 * 
 	 * @param fileName
 	 */
-	public static String takeScreenshot(String fileName) {
+	public static byte[] takeScreenshot(String fileName) {
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		
+		byte[] picture=ts.getScreenshotAs(OutputType.BYTES);
+		
 		
 		Date date=new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy_MMdd_HHmmss");
 		String timeStamp=sdf.format(date.getTime());
 		
-		TakesScreenshot ts = (TakesScreenshot) driver;
+		
 		File file = ts.getScreenshotAs(OutputType.FILE);
 		String scrshotFile=Constants.SCREENSHOTS_FILEPATH+fileName+timeStamp+".png";
 		
@@ -174,7 +180,7 @@ public class CommonMethods extends PageInitiliazer {
 			System.out.println("Cannot take a screenshot");
 		}
 		
-		return scrshotFile;
+		return picture;
 	}
 
 	/**
@@ -197,7 +203,7 @@ public class CommonMethods extends PageInitiliazer {
 		WebDriverWait wait = new WebDriverWait(driver, Constants.EXPLICIT_LOAD_TIME);
 		return wait;
 	}
-
+	
 	/**
 	 * This method will wait until element becomes clickable
 	 * 
@@ -292,7 +298,19 @@ public class CommonMethods extends PageInitiliazer {
 				break;
 			}
 		}
-	}	
+		}	
+	
+	//read json file
+	static String jsonFile;
+	public static String readJson(String fileName) {
+		try {
+			jsonFile= new String(Files.readAllBytes(Paths.get(fileName)));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return jsonFile;
+		}
+	
 	
 	
 		

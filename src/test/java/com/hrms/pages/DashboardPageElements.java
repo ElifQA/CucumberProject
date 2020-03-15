@@ -16,6 +16,9 @@ public class DashboardPageElements extends CommonMethods {
 	
 	@FindBy(id="menu_pim_viewPimModule")
     public WebElement pim;
+	
+	@FindBy(linkText="Employee List")
+	public WebElement listEmpl;
     
     @FindBy(id="menu_pim_addEmployee")
     public WebElement addEmp;

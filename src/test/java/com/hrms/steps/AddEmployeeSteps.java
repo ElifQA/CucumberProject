@@ -4,12 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.openqa.selenium.support.ui.Select;
-
-import com.hrms.pages.AddEmployeePageElements;
-import com.hrms.pages.DashboardPageElements;
-import com.hrms.pages.LoginPageElements;
-import com.hrms.pages.PersonalDetailsPageElements;
 import com.hrms.utils.CommonMethods;
 import com.hrms.utils.ConfigsReader;
 
@@ -28,6 +22,7 @@ public class AddEmployeeSteps extends CommonMethods {
 	@Given("I am logged into HRMS")
 	public void i_am_logged_into_HRMS() {
 
+
 		login.login(ConfigsReader.getProperty("username"), ConfigsReader.getProperty("password"));
 	}
 
@@ -40,7 +35,7 @@ public class AddEmployeeSteps extends CommonMethods {
 	@When("I add {string}, {string} and {string}")
 	public void i_add_and_(String fName, String mName, String lName) {
 
-		sendText(addEmp.firstName, fName);
+		sendText(addEmp.firstName,fName );
 		sendText(addEmp.middleName, mName);
 		sendText(addEmp.lastName, lName);
 		empId = addEmp.empId.getText();
@@ -140,14 +135,14 @@ public class AddEmployeeSteps extends CommonMethods {
 			selectDdValue(pdetails.MaritalStatusBtn, map.get("MaritalStatus"));
 			//Select selectM = new Select(pdetails.MaritalStatusBtn);
 			//selectM.selectByVisibleText(map.get("MaritalStatus"));
-			//Select selectN = new Select(pdetails.nationality);
+			
 			selectDdValue(pdetails.nationality, map.get("Nationality"));
-			//selectN.selectByVisibleText(map.get("Nationality"));
+			
 			sendText(pdetails.dobCalendar, map.get("DOB"));
 
 			
 			takeScreenshot("newEmp");
-			//click on save
+		
 			jsClick(pdetails.edit_saveBtn);
 		}
 

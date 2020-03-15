@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/test/java/com/hrms/API/steps/practice/CreateEmpAPI.java=UTF-8
+encoding//src/test/java/com/hrms/API/steps/practice/GETAllEmployeeAPI.java=UTF-8
+encoding//src/test/java/com/hrms/API/steps/practice/SampleAPITest.java=UTF-8
+encoding//src/test/java/com/hrms/utils/APIConstants.java=UTF-8
